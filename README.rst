@@ -55,10 +55,10 @@ Remove VMs::
 Demo Instance
 =============
 
-This playbook installs a keycloak service which as available at:
+This playbook installs a keycloak service which is available at:
 http://localhost:8080/auth/
 
-You can log-in to the administrator console with `username=admin`, `password=admin`:
+You can log-in to the administrator console with ``username=admin``, ``password=admin``:
 http://localhost:8080/auth/admin
 
 It set-ups a demo realm with a demo user:
