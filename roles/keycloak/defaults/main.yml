@@ -1,0 +1,4 @@
+---
+keycloak_home: "/usr/local/keycloak"
+keycloak_bind_address: "0.0.0.0"
+java_home: "/usr/local/openjdk-jre"

@@ -1,0 +1,24 @@
+---
+
+- name: Link Java
+  file:
+    src: "{{ java_home }}/bin/java"
+    dest: "/usr/local/bin/java"
+    owner: root
+    group: root
+    state: link
+
+- name: Start Keycloak server
+  shell: "nohup {{keycloak_home}}/bin/standalone.sh -b={{ keycloak_bind_address }} -bmanagement={{ keycloak_bind_address }} &"
+
+- name: Sleep for 60 seconds to allow server to boot up
+  wait_for:
+    timeout: 60
+  # delegate_to: localhost
+
+- name: Create an admin user
+  command: "{{keycloak_home}}/bin/add-user-keycloak.sh -r master -u admin -p admin"
+  ignore_errors: yes
+
+- name: Restart server to allow changes
+  command: "{{keycloak_home}}/bin/jboss-cli.sh --connect command=:reload"

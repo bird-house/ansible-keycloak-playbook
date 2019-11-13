@@ -1,0 +1,24 @@
+# custom configuration
+custom.yml
+etc/custom*.yml
+
+# external roles from ansible-galaxy
+roles/andrewrothstein.keycloak/
+roles/andrewrothstein.openjdk/
+roles/andrewrothstein.unarchive-deps/
+roles/andrewrothstein.bash/
+roles/andrewrothstein.miniconda/
+roles/andrewrothstein.alpine-glibc-shim
+
+# temp files
+*.retry
+*.log
+
+# Vagrant
+.vagrant
+
+# Tests
+tests/test.sh
+
+# Jupyter
+.ipynb_checkpoints

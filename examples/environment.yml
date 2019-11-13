@@ -1,0 +1,13 @@
+name: keycloak_demo
+channels:
+- defaults
+dependencies:
+- python=3.7
+- pip
+# jupyter
+- jupyterlab
+# oauth2
+- requests
+- oauthlib
+- requests-oauthlib
+- pyjwt

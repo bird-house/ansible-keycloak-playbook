@@ -1,0 +1,37 @@
+---
+
+- name: Connect to the server
+  command: "{{keycloak_home}}/bin/kcadm.sh config credentials --server http://localhost:8080/auth --realm master --user admin --password admin"
+
+- name: Create demo realm
+  command: "{{keycloak_home}}/bin/kcadm.sh create realms -s realm=demo -s enabled=true"
+  ignore_errors: yes
+
+- name: Create client with client_credentials grant type
+  command: "{{keycloak_home}}/bin/kcadm.sh create clients -r demo -s clientId=demo -s enabled=true -s serviceAccountsEnabled=true -s clientAuthenticatorType=client-secret -s secret=c083d72c-a262-40b1-ad51-326f6977d74b"
+  ignore_errors: yes
+
+- name: Create a default client
+  command: "{{keycloak_home}}/bin/kcadm.sh create clients -r demo -s clientId=test -s enabled=true"
+  ignore_errors: yes
+
+# - name: Create or update Keycloak client
+#   local_action:
+#     module: keycloak_client
+#     auth_client_id: admin-cli
+#     auth_keycloak_url: http://localhost:8080/auth
+#     auth_realm: demo
+#     auth_username: admin
+#     auth_password: admin
+#     client_id: test
+#     state: present
+#     enabled: True
+#     redirect_uris:
+#       - http://localhost:8000/callback/*
+
+- name: Create a user to test with
+  command: "{{keycloak_home}}/bin/kcadm.sh create users -r demo -s username=testuser -s enabled=true -s email=test@mail.com -s firstName=First -s lastName=Last"
+  ignore_errors: yes
+
+- name: Set/Reset user password
+  command: "{{keycloak_home}}/bin/kcadm.sh set-password -r demo --username testuser --new-password pass -t=false"
