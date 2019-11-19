@@ -18,8 +18,8 @@ roles:
 
 .PHONY: play
 play: roles
-	echo "Installing PyWPS application with Ansible [all tasks] ..."
-	ansible-playbook -c local playbook.yml
+	echo "Installing Keycloak with Ansible [all tasks] ..."
+	ansible-playbook -i inventory.yml playbook.yml
 
 .PHONY: clean
 clean:

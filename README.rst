@@ -52,6 +52,15 @@ Remove VMs::
 
   $ vagrant destroy -f
 
+Run playbook manually
+=====================
+
+Run playbook to deploy to localhost::
+
+  $ ansible-playbook -i inventory.yml playbook.yml
+  OR
+  $ make play
+
 Demo Instance
 =============
 
