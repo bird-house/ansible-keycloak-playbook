@@ -3,12 +3,16 @@
 - name: Connect to the server
   command: "{{keycloak_home}}/bin/kcadm.sh config credentials --server http://localhost:8080/auth --realm master --user admin --password admin"
 
-- name: Disable HTTPS
+- name: Disable HTTPS in master realm
   command: "{{keycloak_home}}/bin/kcadm.sh update realms/master -s sslRequired=NONE"
   ignore_errors: yes
 
 - name: Create demo realm
   command: "{{keycloak_home}}/bin/kcadm.sh create realms -s realm=demo -s enabled=true"
+  ignore_errors: yes
+
+- name: Disable HTTPS in demo realm
+  command: "{{keycloak_home}}/bin/kcadm.sh update realms/demo -s sslRequired=NONE"
   ignore_errors: yes
 
 - name: Create client with client_credentials grant type
