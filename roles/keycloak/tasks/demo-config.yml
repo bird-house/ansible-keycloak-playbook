@@ -19,11 +19,29 @@
   command: "{{keycloak_home}}/bin/kcadm.sh create clients -r demo -s clientId=demo -s enabled=true -s serviceAccountsEnabled=true -s clientAuthenticatorType=client-secret -s secret=c083d72c-a262-40b1-ad51-326f6977d74b"
   ignore_errors: yes
 
-- name: Create a default client
+- name: Create a test client
   command: "{{keycloak_home}}/bin/kcadm.sh create clients -r demo -s clientId=test -s enabled=true"
   ignore_errors: yes
 
-# - name: Create or update Keycloak client
+# - name: Create or update Keycloak test client
+#   local_action:
+#     module: keycloak_client
+#     auth_client_id: admin-cli
+#     auth_keycloak_url: http://localhost:8080/auth
+#     auth_realm: demo
+#     auth_username: admin
+#     auth_password: admin
+#     client_id: test
+#     state: present
+#     enabled: True
+#     redirect_uris:
+#       - http://localhost:8000/callback/*
+
+- name: Create a phoenix client
+  command: "{{keycloak_home}}/bin/kcadm.sh create clients -r demo -s clientId=phoenix -s enabled=true -s secret=a432a213-2788-4264-b28f-d3ccde67fa95"
+  ignore_errors: yes
+
+# - name: Create or update Keycloak phoenix client
 #   local_action:
 #     module: keycloak_client
 #     auth_client_id: admin-cli
