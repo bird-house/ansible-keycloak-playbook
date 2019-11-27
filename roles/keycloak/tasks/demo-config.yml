@@ -53,7 +53,7 @@
 #     state: present
 #     enabled: True
 #     redirect_uris:
-#       - http://localhost:8000/callback/*
+#       - https://localhost:8443/account/auth/keycloak/*
 
 - name: Create a user to test with
   command: "{{keycloak_home}}/bin/kcadm.sh create users -r demo -s username=testuser -s enabled=true -s email=test@mail.com -s firstName=First -s lastName=Last"
